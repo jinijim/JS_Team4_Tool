@@ -25,14 +25,6 @@ CMapToolGround::CMapToolGround()
 
 CMapToolGround::~CMapToolGround()
 {
-	//for_each(m_pMapPngImg->begin(), m_pMapPngImg->end(), [](auto& Pair)
-	//{
-	//	Pair.second->Destroy();
-	//	Safe_Delete<CImage*>(Pair.second);
-	//});
-
-	//m_pMapPngImg->clear();
-
 	Safe_Delete(m_pTabDialog1);
 	Safe_Delete(m_pTabDialog2);
 }
@@ -51,7 +43,6 @@ void CMapToolGround::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PICTURE9, m_TilePreview[8]);
 	DDX_Control(pDX, IDC_PICTURE10, m_TilePreview[9]);
 
-	//	DDX_Control(pDX, IDC_EDIT2, m_PictureText);
 	DDX_Text(pDX, IDC_EDIT2, m_PictureText[0]);
 	DDX_Text(pDX, IDC_EDIT3, m_PictureText[1]);
 	DDX_Text(pDX, IDC_EDIT4, m_PictureText[2]);
@@ -65,8 +56,6 @@ void CMapToolGround::DoDataExchange(CDataExchange* pDX)
 
 
 	DDX_Control(pDX, IDC_TAB2, m_Tab);
-	//DDX_Control(pDX, IDD_DIALOG1, m_pTabDialog1);
-	//DDX_Control(pDX, IDD_DIALOG2, m_pTabDialog2);
 
 	
 }
