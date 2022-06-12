@@ -1,7 +1,10 @@
 #pragma once
 #include "afxwin.h"
+#include "Resource.h"
 #include "MapTool.h"
-
+#include "afxcmn.h"
+#include "Tab1.h"
+#include "Tab2.h"
 
 
 // CMapToolGround Æû ºäÀÔ´Ï´Ù.
@@ -27,30 +30,22 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void OnInitialUpdate();
+	//virtual void OnInitialUpdate();
 
 	DECLARE_MESSAGE_MAP()
+
+
 public :
 	void	set_ImageMap(map<CString, CImage*>* _map) { m_pMapPngImg = _map; }
+	void		Draw_Picture();
+	void		Set_PictureText();
 
 public:
-	CStatic		m_TilePreview[10];
 	afx_msg void OnButtonAddTile();
-
-
-	map<CString, CImage*>*		m_pMapPngImg;
-
-	CListBox	m_ListBox;
-	CMapTool	m_MapTool;
 	afx_msg void OnStnClickedPicture1();
-	CString	m_strFileName;
-	virtual void OnInitialUpdate();
-
-	void		Draw_Picture();
 	afx_msg void OnStnClickedPicture2();
 	afx_msg void OnStnClickedPicture3();
-	void		Set_PictureText();
-	//CString		 m_PictureText;
-	CString		m_PictureText[10];
 	afx_msg void OnStnClickedPicture4();
 	afx_msg void OnStnClickedPicture5();
 	afx_msg void OnStnClickedPicture6();
@@ -58,6 +53,23 @@ public:
 	afx_msg void OnStnClickedPicture8();
 	afx_msg void OnStnClickedPicture9();
 	afx_msg void OnStnClickedPicture10();
+	afx_msg void OnTcnSelchangeTab2(NMHDR *pNMHDR, LRESULT *pResult);
+
+
+public :
+	CStatic		m_TilePreview[10];
+	CString		m_PictureText[10];
+
+	map<CString, CImage*>*		m_pMapPngImg;
+
+	CListBox	m_ListBox;
+	CMapTool	m_MapTool;
+	CString		m_strFileName;
+
+	CTabCtrl	m_Tab;
+	CTab1*		m_pTabDialog1;
+	CTab2*		m_pTabDialog2;
+	
 };
 
 
