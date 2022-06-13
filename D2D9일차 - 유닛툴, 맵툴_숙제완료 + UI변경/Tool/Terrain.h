@@ -23,6 +23,8 @@ public:
 	bool		Picking_Dot(const D3DXVECTOR3& vPos, const int& iIndex);
 
 public:
+	vector<TILE*>&		Get_VecTile(void) { return m_vecTile; }
+
 	void		Set_MainView(CToolView* pMainView) { m_pMainView = pMainView; }
 	
 	// d2d이기 때문에 z값을 매개 변수로 받을 필요가 없다
