@@ -44,4 +44,5 @@ public:
 	CStatic m_Picture;
 
 	CString	m_strFileName;
+	afx_msg void OnSaveData();
 };
