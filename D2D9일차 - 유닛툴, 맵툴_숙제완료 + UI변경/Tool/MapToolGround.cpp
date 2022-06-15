@@ -13,6 +13,8 @@ IMPLEMENT_DYNCREATE(CMapToolGround, CFormView)
 
 CMapToolGround::CMapToolGround()
 	: CFormView(IDD_MAPTOOLGROUND)
+	, m_pTabDialog1(NULL)
+	, m_pTabDialog2(NULL)
 {
 	for (int i = 0; i < 10; ++i)
 	{
@@ -22,42 +24,15 @@ CMapToolGround::CMapToolGround()
 
 CMapToolGround::~CMapToolGround()
 {
-	//for_each(m_pMapPngImg->begin(), m_pMapPngImg->end(), [](auto& Pair)
-	//{
-	//	Pair.second->Destroy();
-	//	Safe_Delete<CImage*>(Pair.second);
-	//});
-
-	//m_pMapPngImg->clear();
+	Safe_Delete(m_pTabDialog1);
+	Safe_Delete(m_pTabDialog2);
 }
 
 void CMapToolGround::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_PICTURE, m_TilePreview[0]);
-	DDX_Control(pDX, IDC_PICTURE2, m_TilePreview[1]);
-	DDX_Control(pDX, IDC_PICTURE3, m_TilePreview[2]);
-	DDX_Control(pDX, IDC_PICTURE4, m_TilePreview[3]);
-	DDX_Control(pDX, IDC_PICTURE5, m_TilePreview[4]);
-	DDX_Control(pDX, IDC_PICTURE6, m_TilePreview[5]);
-	DDX_Control(pDX, IDC_PICTURE7, m_TilePreview[6]);
-	DDX_Control(pDX, IDC_PICTURE8, m_TilePreview[7]);
-	DDX_Control(pDX, IDC_PICTURE9, m_TilePreview[8]);
-	DDX_Control(pDX, IDC_PICTURE10, m_TilePreview[9]);
 
-//	DDX_Control(pDX, IDC_EDIT2, m_PictureText);
-	DDX_Text(pDX, IDC_EDIT2, m_PictureText[0]);
-	DDX_Text(pDX, IDC_EDIT3, m_PictureText[1]);
-	DDX_Text(pDX, IDC_EDIT4, m_PictureText[2]);
-	DDX_Text(pDX, IDC_EDIT5, m_PictureText[3]);
-	DDX_Text(pDX, IDC_EDIT7, m_PictureText[4]);
-	DDX_Text(pDX, IDC_EDIT8, m_PictureText[5]);
-	DDX_Text(pDX, IDC_EDIT9, m_PictureText[6]);
-	DDX_Text(pDX, IDC_EDIT10, m_PictureText[7]);
-	DDX_Text(pDX, IDC_EDIT11, m_PictureText[8]);
-	DDX_Text(pDX, IDC_EDIT12, m_PictureText[9]);
-
-
+	DDX_Control(pDX, IDC_TAB1, m_Tab);
 }
 
 BEGIN_MESSAGE_MAP(CMapToolGround, CFormView)
@@ -72,6 +47,7 @@ BEGIN_MESSAGE_MAP(CMapToolGround, CFormView)
 	ON_STN_CLICKED(IDC_PICTURE8, &CMapToolGround::OnStnClickedPicture8)
 	ON_STN_CLICKED(IDC_PICTURE9, &CMapToolGround::OnStnClickedPicture9)
 	ON_STN_CLICKED(IDC_PICTURE10, &CMapToolGround::OnStnClickedPicture10)
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CMapToolGround::OnTcnSelchangeTab1)
 END_MESSAGE_MAP()
 
 
@@ -125,16 +101,24 @@ void CMapToolGround::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
 
-	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
-	//UpdateData(TRUE);
+	m_Tab.DeleteAllItems();
+	m_Tab.InsertItem(0, L"Tile");
+	m_Tab.InsertItem(1, L"Object");
 
-	//int iIndex = 0;
-	//for (auto& _iter : *m_pMapPngImg)
-	//{
-	//	m_TilePreview[iIndex].SetBitmap(*(_iter).second);
-	//}
+	CRect rect;
 
-	//UpdateData(FALSE);
+	m_pTabDialog1 = new CTab1;
+	m_pTabDialog1->Create(IDD_DIALOG1, &m_Tab);
+	m_pTabDialog1->GetWindowRect(&rect);
+	m_pTabDialog1->MoveWindow(5, 25, rect.Width(), rect.Height());
+	m_pTabDialog1->ShowWindow(SW_SHOW);
+
+
+	m_pTabDialog2 = new CTab2;
+	m_pTabDialog2->Create(IDD_DIALOG2, &m_Tab);
+	m_pTabDialog2->GetWindowRect(&rect);
+	m_pTabDialog2->MoveWindow(5, 25, rect.Width(), rect.Height());
+	//m_pTabDialog2->ShowWindow(SW_SHOW);	// 탭2를 SHOW 해버리면 탭1이 처음에 가려짐
 
 }
 
@@ -288,4 +272,23 @@ void CMapToolGround::OnStnClickedPicture10()
 	pToolView->Set_DrawID();
 
 	UpdateData(FALSE);
+}
+
+
+void CMapToolGround::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	int select = m_Tab.GetCurSel();
+
+	switch (select)
+	{
+	case 0:
+		m_pTabDialog1->ShowWindow(SW_SHOW);
+		m_pTabDialog2->ShowWindow(SW_HIDE);
+		break;
+	case 1:
+		m_pTabDialog1->ShowWindow(SW_HIDE);
+		m_pTabDialog2->ShowWindow(SW_SHOW);
+		break;
+	}
+	*pResult = 0;
 }

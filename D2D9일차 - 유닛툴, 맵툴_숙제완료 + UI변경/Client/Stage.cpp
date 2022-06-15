@@ -15,7 +15,7 @@ CStage::~CStage()
 
 HRESULT CStage::Ready_Scene()
 {
-	if (FAILED(CTextureMgr::Get_Instance()->InsertTexture(L"../Texture/Stage/Terrain/Tile/Tile%d.png", TEX_MULTI, L"Terrain", L"Tile", 36)))
+	if (FAILED(CTextureMgr::Get_Instance()->InsertTexture(L"../Texture/Stage/Terrain/Tile/Tile%d.png", TEX_MULTI, L"Terrain", L"Tile", 16)))
 	{
 		ERR_MSG(L"Stage Tile Image Insert failed");
 		return E_FAIL;
