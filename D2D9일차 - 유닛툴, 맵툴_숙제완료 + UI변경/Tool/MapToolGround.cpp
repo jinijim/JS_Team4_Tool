@@ -36,7 +36,7 @@ void CMapToolGround::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CMapToolGround, CFormView)
-	ON_BN_CLICKED(IDC_BUTTON1, &CMapToolGround::OnButtonAddTile)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMapToolGround::OnSaveData)
 	ON_STN_CLICKED(IDC_PICTURE, &CMapToolGround::OnStnClickedPicture1)
 	ON_STN_CLICKED(IDC_PICTURE2, &CMapToolGround::OnStnClickedPicture2)
 	ON_STN_CLICKED(IDC_PICTURE3, &CMapToolGround::OnStnClickedPicture3)
@@ -71,13 +71,67 @@ void CMapToolGround::Dump(CDumpContext& dc) const
 // CMapToolGround 메시지 처리기입니다.
 
 
-void CMapToolGround::OnButtonAddTile()
+void CMapToolGround::OnSaveData()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	if (nullptr == m_MapTool.GetSafeHwnd())
 		m_MapTool.Create(IDD_MAPTOOL);	// 해당 ID에 맞는 다이얼로그 생성
 
-	m_MapTool.ShowWindow(SW_SHOW);
+	CFileDialog		Dlg(FALSE,
+		L"dat",
+		L"*.dat",
+		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		L"Data Files(*.dat)|*.dat||",
+		this);
+
+	TCHAR	szPath[MAX_PATH] = L"";
+
+	// 현재 프로젝트 경로를 얻어오는 함수
+	GetCurrentDirectory(MAX_PATH, szPath);
+
+
+	// 전체 경로에서 파일 이름만 잘라주는 함수, 만약 경로 상에 파일명이 없다면 제일 마지막 폴더명을 잘라낸다.
+	PathRemoveFileSpec(szPath);
+
+	// data 폴더명을 잘라낸 경로에 합성
+	lstrcat(szPath, L"\\Data");
+
+	// 대화상자를 열었을 때 보이는 기본 경로로 설정
+	Dlg.m_ofn.lpstrInitialDir = szPath;
+
+
+	if (IDOK == Dlg.DoModal())
+	{
+		// GetPathName : 선택된 경로를 반환
+		CString		str = Dlg.GetPathName();
+
+		// GetString 원시 문자열로 변환하는 함수
+		const TCHAR* pGetPath = str.GetString();
+
+		HANDLE		hFile = CreateFile(pGetPath, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+
+		if (INVALID_HANDLE_VALUE == hFile)
+			return;
+
+
+		CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+
+		CToolView* pView = dynamic_cast<CToolView*>(pMainFrm->m_MainSplitter.GetPane(0, 1));
+
+		CTerrain* pTerrain = pView->Get_Terrain();
+
+		vector<TILE*>& vecTile = pTerrain->Get_VecTile();
+
+		DWORD	dwByte = 0;
+
+		for (auto& iter : vecTile)
+		{
+			WriteFile(hFile, iter, sizeof(TILE), &dwByte, nullptr);
+		}
+
+		CloseHandle(hFile);
+	}
+
 }
 
 

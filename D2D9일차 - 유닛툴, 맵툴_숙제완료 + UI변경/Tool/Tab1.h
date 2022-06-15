@@ -41,6 +41,16 @@ public:
 	afx_msg void OnStnClickedPicture8();
 	afx_msg void OnStnClickedPicture9();
 	afx_msg void OnStnClickedPicture10();
+	afx_msg void OnStnClickedPicture11();
+	afx_msg void OnStnClickedPicture12();
+	afx_msg void OnStnClickedPicture13();
+	afx_msg void OnStnClickedPicture14();
+	afx_msg void OnStnClickedPicture15();
+	afx_msg void OnStnClickedPicture16();
+	afx_msg void OnStnClickedPicture17();
+	afx_msg void OnStnClickedPicture18();
+	afx_msg void OnStnClickedPicture19();
+	afx_msg void OnStnClickedPicture20();
 
 public:
 
@@ -57,14 +67,5 @@ public:
 	
 	
 	CEdit m_PictureText1;
-	afx_msg void OnStnClickedPicture11();
-	afx_msg void OnStnClickedPicture12();
-	afx_msg void OnStnClickedPicture13();
-	afx_msg void OnStnClickedPicture14();
-	afx_msg void OnStnClickedPicture15();
-	afx_msg void OnStnClickedPicture16();
-	afx_msg void OnStnClickedPicture17();
-	afx_msg void OnStnClickedPicture18();
-	afx_msg void OnStnClickedPicture19();
-	afx_msg void OnStnClickedPicture20();
+
 };

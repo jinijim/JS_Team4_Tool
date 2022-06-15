@@ -41,7 +41,7 @@ public :
 	void		Draw_Picture();
 
 public:
-	afx_msg void OnButtonAddTile();
+	afx_msg void OnSaveData();
 	afx_msg void OnStnClickedPicture1();
 	afx_msg void OnStnClickedPicture2();
 	afx_msg void OnStnClickedPicture3();

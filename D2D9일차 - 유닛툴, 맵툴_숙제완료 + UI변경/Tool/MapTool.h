@@ -30,6 +30,7 @@ public:
 	afx_msg void OnListBox();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnButtonSelectTileImage();
+	afx_msg void OnSaveData();
 
 public:
 	void		Horizontal_Scroll(void);
@@ -44,5 +45,4 @@ public:
 	CStatic m_Picture;
 
 	CString	m_strFileName;
-	afx_msg void OnSaveData();
 };

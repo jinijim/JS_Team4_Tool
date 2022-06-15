@@ -52,8 +52,6 @@ void CTab1::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PICTURE18, m_TilePreview[17]);
 	DDX_Control(pDX, IDC_PICTURE19, m_TilePreview[18]);
 
-
-
 	DDX_Text(pDX, IDC_EDIT2, m_PictureText[0]);
 	DDX_Text(pDX, IDC_EDIT3, m_PictureText[1]);
 	DDX_Text(pDX, IDC_EDIT4, m_PictureText[2]);
@@ -74,7 +72,6 @@ void CTab1::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT20, m_PictureText[17]);
 	DDX_Text(pDX, IDC_EDIT21, m_PictureText[18]);
 	DDX_Text(pDX, IDC_EDIT22, m_PictureText[19]);
-
 }
 
 

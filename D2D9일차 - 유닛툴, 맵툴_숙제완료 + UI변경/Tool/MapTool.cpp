@@ -165,7 +165,6 @@ void CMapTool::OnButtonSelectTileImage()
 	int iIndex = m_ListBox.GetCurSel();
 	m_ListBox.GetText(iIndex, m_strFileName);
 
-
 	CMainFrame*		pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
 	CToolView*		pToolView = dynamic_cast<CToolView*>(pMainFrm->m_MainSplitter.GetPane(0, 1));
 

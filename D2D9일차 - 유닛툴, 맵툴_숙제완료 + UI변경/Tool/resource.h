@@ -58,6 +58,7 @@
 #define IDC_TAB1                        1029
 #define IDC_PICTURE11                   1029
 #define IDC_PICTURE12                   1030
+#define IDC_TAB2                        1030
 #define IDC_PICTURE13                   1031
 #define IDC_PICTURE14                   1032
 #define IDC_PICTURE15                   1033
@@ -76,7 +77,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        318
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1030
+#define _APS_NEXT_CONTROL_VALUE         1031
 #define _APS_NEXT_SYMED_VALUE           314
 #endif
 #endif
