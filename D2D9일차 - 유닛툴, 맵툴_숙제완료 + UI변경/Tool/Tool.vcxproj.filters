@@ -58,6 +58,9 @@
     <Filter Include="06. FileInfo">
       <UniqueIdentifier>{8c6a193f-220a-43ae-86e6-f6cb824bfb44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. View\02. MapToolGround">
+      <UniqueIdentifier>{ce85f1d9-d25d-44d4-b986-a267f55c0982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -118,7 +121,13 @@
       <Filter>06. FileInfo</Filter>
     </ClInclude>
     <ClInclude Include="MapToolGround.h">
-      <Filter>01. View</Filter>
+      <Filter>01. View\02. MapToolGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab1.h">
+      <Filter>01. View\02. MapToolGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Tab2.h">
+      <Filter>01. View\02. MapToolGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +180,13 @@
       <Filter>06. FileInfo</Filter>
     </ClCompile>
     <ClCompile Include="MapToolGround.cpp">
-      <Filter>01. View</Filter>
+      <Filter>01. View\02. MapToolGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab1.cpp">
+      <Filter>01. View\02. MapToolGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Tab2.cpp">
+      <Filter>01. View\02. MapToolGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

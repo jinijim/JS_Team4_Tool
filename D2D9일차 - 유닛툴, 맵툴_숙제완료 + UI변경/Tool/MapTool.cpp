@@ -172,13 +172,10 @@ void CMapTool::OnButtonSelectTileImage()
 	pToolView->Set_TileName(m_strFileName);
 	pToolView->Set_DrawID();
 
-
-	// 위치 확인 필요
-	//CMainFrame*			pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
 	CMapToolGround*		pMapToolGround = dynamic_cast<CMapToolGround*>(pMainFrm->m_SecondSplitter.GetPane(2, 0));
-	//m_pMapPngImg = pMapToolGround->Get_ImageMap();
-	pMapToolGround->set_ImageMap(&m_MapPngImg);
-	pMapToolGround->Draw_Picture();
+	CTab1*		pTab1 = pMapToolGround->get_Tab1();
+	pTab1->set_ImageMap(&m_MapPngImg);
+	pTab1->Draw_Picture();
 
 	UpdateData(FALSE);
 }

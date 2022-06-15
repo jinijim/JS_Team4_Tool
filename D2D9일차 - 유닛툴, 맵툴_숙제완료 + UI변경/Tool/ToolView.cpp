@@ -42,7 +42,7 @@ END_MESSAGE_MAP()
 
 CToolView::CToolView()
 	: m_pDevice(CDevice::Get_Instance())
-	, m_ByDrawID(10)
+	, m_ByDrawID(1)
 	//, m_pSingle(nullptr)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
